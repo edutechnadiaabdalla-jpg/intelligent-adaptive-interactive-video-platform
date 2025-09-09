@@ -1,0 +1,211 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "التسجيل في البرنامج";
+}
+
+<link rel="stylesheet" href="css/texty.css" />
+
+<body>
+    <section>
+        <div class="login-box">
+
+            <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                <h5>التسجيل في البرنامج</h5>
+                <br />
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+                <div class="form-floating">
+                    <input asp-for="Input.FirstName" class="form-floating form-control" autocomplete="firstname" aria-required="true" placeholder="first name" />
+                    <label asp-for="Input.FirstName" class="textr">الاسم الأول</label>
+                    <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                    @* <br /> *@
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.LastName" class="form-floating form-control" autocomplete="lastname" aria-required="true" placeholder="last name" />
+                        <label asp-for="Input.LastName">اسم الأب</label>
+                        <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <select asp-for="Input.SchoolName" class="form-control-sm" required>
+                        <option value="">اسم مدرستك</option>
+                        <option>المتقدمة (1)</option>
+                        <option>المتقدمة (2)</option>
+                        <option>معلم/ معلمة</option>
+                        <option>محكم/ رجل أعمال</option>
+                        <option>دكتور مشرف/ مناقش</option>
+                        <option>الباحثة</option>
+                    </select>
+                    @* <label asp-for="Input.SchoolName" class="control-label">اسم مدرستك</label> *@
+                </div>
+                <div class="form-floating">
+                    <input asp-for="Input.Email" class="form-floating form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                    <label asp-for="Input.Email">البريد الإلكتروني</label>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                @* <br /> *@
+                <div class="form-floating">
+                    <input asp-for="Input.Password" class="form-floating form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                    <label asp-for="Input.Password">كلمة السر</label>
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                @* <br /> *@
+                <div class="form-floating">
+                    <input asp-for="Input.ConfirmPassword" class="form-floating form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                    <label asp-for="Input.ConfirmPassword">تأكيد كلمة السر</label>
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
+                @* <br /> *@
+                <button id="registerSubmit" type="submit" class="main-btn">التسجيل</button>
+            </form>
+        </div>
+    </section>
+
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+
+    }
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+<style>
+    body {
+        background: url(/images/f10.jpeg) no-repeat;
+        background-size: cover;
+        direction: rtl;
+        text-align: right;
+    }
+
+    section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        min-height: 100vh;
+        background-position: center;
+        padding: 20px;
+    }
+
+    .login-box {
+        width: 100%;
+        max-width: 400px;
+        /* min-height: 65vh !important; */
+        background: transparent;
+        backdrop-filter: blur(15px);
+        border: 2px solid rgba(255, 255, 255, .5);
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 10px;
+        flex-direction: column;
+    }
+
+    /* Heading */
+    h5 {
+        font-size: 1em;
+        color: #fff;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    /* Text input fields */
+    .form-floating {
+        position: relative;
+        margin-bottom: 11px;
+        width: 100%;
+        text-align: right;
+    }
+
+        .form-floating input {
+            height: 25px;
+            font-size: 0.9em;
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+        }
+
+        .form-floating label {
+            right: 0px;
+            left: auto;
+            color: #fff;
+            font-size: 0.9em;
+        }
+
+    .form-control {
+        background: transparent;
+        height: 65px;
+    }
+    /* Validation messages */
+    .text-danger {
+        font-size: 0.85em;
+    }
+
+    .form-group {
+        border: white !important;
+    }
+        /* Dropdown */
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            /* border: white !important; */
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+    select option {
+        color: black;
+    }
+
+    /* Button */
+    .main-btn {
+        display: block;
+        margin: 20px auto; /* Auto-centering horizontally */
+        font-family: Arial;
+        text-align: center center;
+        color: #fff;
+        font-size: 1.05em;
+        font-weight: 700;
+        background-color: turquoise;
+        height: 40px;
+        width: 150px;
+        border-radius: 14px;
+        border: 1px solid #000;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+        .main-btn:hover {
+            color: whitesmoke;
+            background-color: transparent;
+            border-color: turquoise;
+            transform: scale(1.05);
+        }
+
+    /* Register link */
+    .register-link {
+        font-size: .9em;
+        color: #fff;
+        text-align: center;
+        margin: 20px 0 10px;
+    }
+
+        .register-link p a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+            .register-link p a:hover {
+                text-decoration: underline;
+            }
+
+</style>

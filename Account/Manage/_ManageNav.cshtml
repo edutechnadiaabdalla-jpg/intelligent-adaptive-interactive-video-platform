@@ -1,0 +1,51 @@
+﻿@inject SignInManager<ApplicationUser> SignInManager
+@{
+    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+}
+<!DOCTYPE html>
+<html lang="ar-ae" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Chatbot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts Link For Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
+    <link rel="stylesheet" href="/css/nav.css">
+
+</head>
+<body>
+
+<ul class="nav nav-pills flex-column">
+    <li class="nav-item"><a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">بروفيل</a></li>
+    <li class="nav-item"><a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">بريد إلكتروني</a></li>
+    <li class="nav-item"><a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">كلمة السر</a></li>
+    @if (hasExternalLogins)
+    {
+        <li id="external-logins" class="nav-item"><a id="external-login" class="nav-link @ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="./ExternalLogins">External logins</a></li>
+    }
+    <li class="nav-item"><a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">المصادقة-الثنائية</a></li>
+    <li class="nav-item"><a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">البيانات الشخصية</a></li>
+</ul>
+</body>
+</html>
+<style>
+    
+    .nav-pills{
+        background-color:black;
+        float:right;
+        text-align:right;
+        align-items:center;
+        direction: rtl; /* Sets the text direction to right-to-left */
+        unicode-bidi: embed; /* Ensures proper handling of the right-to-left text */
+    }
+
+    li{
+        color: white;
+        font-size: 20px;
+        font: bold;
+        line-height:50px;
+        direction: rtl; /* Sets the text direction to right-to-left */
+        unicode-bidi: embed; /* Ensures proper handling of the right-to-left text */
+    }
+</style>
